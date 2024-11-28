@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+<h1>フォーム</h1>
+<form action="/eqform/solve" method="POST">
+    <input type="text" name="eq">
+    <button type="submit">送信</button>
+</form>
+
+{% endblock %}
