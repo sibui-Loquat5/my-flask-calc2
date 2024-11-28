@@ -40,4 +40,4 @@ def eqform_solve():
     eq_solve = request.form["eq"]
     return f"POST受け取り内容: {eq_solve}"
 
-# commit test
+# commit test1
