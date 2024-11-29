@@ -12,6 +12,11 @@
 {% if user_message %}
         <p>あなた: {{ user_message }}</p>
         <p>Bot: {{ bot_reply }}</p>
+        <!--
+        Djangoのsafeフィルター。GPTの返答の改行を正しく表示させるために書いてみたが機能しなかった
+        なぜ？
+        <p>Bot: {{ bot_reply|safe }}</p>
+        -->
 {% endif %}
 
 {% endblock %}

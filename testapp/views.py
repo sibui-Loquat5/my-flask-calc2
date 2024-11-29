@@ -55,7 +55,7 @@ def eqform():
         )
         # APIからのレスポンスからChatGPTの応答テキストを抽出
         bot_reply = response.choices[0].message.content
-        # print(bot_reply)
+        print(bot_reply)
 
         # render_template()でindex.htmlをレンダリングしたうえでユーザーの入力とChatGPTの応答をHTMLに渡す
         return render_template("testapp/eqform.html",
