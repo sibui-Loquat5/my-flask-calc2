@@ -11,8 +11,8 @@
 
 {% if user_message %}
         <p>あなた: {{ user_message }}</p>
-        <!--Djangoのsafeフィルター。GPTの返答の改行を正しく表示させるため、htmlエスケープの<br>を無効に-->
-        <p>Bot: {{ bot_reply|safe }}</p>
+        <!--<p>Bot: {{ bot_reply }}</p>-->
+        <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
 {% endif %}
 
 {% endblock %}
