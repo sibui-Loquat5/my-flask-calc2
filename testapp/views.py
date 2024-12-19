@@ -45,7 +45,7 @@ def eqform():
 
         # ChatGPT APIにリクエストを送信
         response = openai.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=[
                 # ChatGPTの動作を指示
                 {"role": "system", "content": "あなたは親切で役に立つアシスタントです。"},
@@ -55,9 +55,9 @@ def eqform():
         )
         # APIからのレスポンスからChatGPTの応答テキストを抽出
         # 改行を<br>に置換
-        bot_reply = response.choices[0].message.content.replace("\n", "<br>")
+        bot_reply = response.choices[0].message.content
         print(bot_reply)
-        print(type(bot_reply))
+        # print(type(bot_reply))
 
         # render_template()でindex.htmlをレンダリングしたうえでユーザーの入力とChatGPTの応答をHTMLに渡す
         return render_template("testapp/eqform.html",
