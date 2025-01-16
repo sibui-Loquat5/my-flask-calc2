@@ -1,6 +1,18 @@
 {% extends "layout.html" %}
 
+
 {% block content %}
-<h1>index.html表示してます</h1>
-<p>{{ mydict.insert_something1 }}</p>
+
+<h1>フォーム</h1>
+<form method="POST">
+    <input type="text" name="user_message">
+    <button type="submit">送信</button>
+</form>
+
+{% if user_message %}
+        <p>あなた: {{ user_message }}</p>
+        <!--<p>Bot: {{ bot_reply }}</p>-->
+        <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
+{% endif %}
+
 {% endblock %}

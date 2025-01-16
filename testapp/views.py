@@ -10,35 +10,8 @@ load_dotenv()  # .envファイルに保存されている環境変数 (APIキー
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
-@app.route('/')
+@app.route("/", methods=["GET", "POST"])
 def index():
-    mydict = {
-        "insert_something1": "viewsのinsert_something1部分",
-    }
-    return render_template("testapp/index.html", mydict=mydict)
-
-
-@app.route('/test')
-def testhtml():
-    test_dict = {
-        "test_message": "test.htmlの埋め込み",
-    }
-    return render_template("testapp/test.html", test_dict=test_dict)
-
-
-@app.route("/sampleform", methods=["GET", "POST"])
-def sample_form():
-    if request.method == "GET":
-        return render_template('testapp/sampleform.html')
-
-    if request.method == "POST":
-        print("デバッグ用POST受け取りメッセージ")
-        sample_post_req = request.form["data1"]
-        return f"POST受け取り内容: {sample_post_req}"
-
-
-@app.route("/eqform", methods=["GET", "POST"])
-def eqform():
     if request.method == "POST":  # request.methodでリクエストの種類を確認
         # フォームから送信されたuser_message (ユーザーが入力したメッセージ) を取得
         user_message = request.form["user_message"]
@@ -60,16 +33,10 @@ def eqform():
         # print(type(bot_reply))
 
         # render_template()でindex.htmlをレンダリングしたうえでユーザーの入力とChatGPTの応答をHTMLに渡す
-        return render_template("testapp/eqform.html",
+        return render_template("testapp/index.html",
                                user_message=user_message,
                                bot_reply=bot_reply
                                )
 
     # GETリクエストの場合のレンダリング
-    return render_template("testapp/eqform.html")
-
-
-# @app.route("/eqform/solve", methods=["POST"])
-# def eqform_solve():
-#    eq_solve = request.form["eq"]
-#    return f"POST受け取り内容: {eq_solve}"
+    return render_template("testapp/index.html")
