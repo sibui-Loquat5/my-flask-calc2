@@ -1,18 +1,86 @@
 {% extends "layout.html" %}
 
-
 {% block content %}
 
 <h1>フォーム</h1>
 <form method="POST">
-    <input type="text" name="user_message">
+    <input type="text" name="user_message" id="user_message" style="width: 80%;" placeholder="ここにLaTeX形式で数式を入力">
     <button type="submit">送信</button>
 </form>
 
+<div class="button-container" style="margin-top: 10px;">
+    <button class="op-button" onclick="insertOperator('\\frac{}{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?\frac{x}{y}" title="\frac{x}{y}" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('^{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?x^2" title="x^2" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('_{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?x_n" title="x_n" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\sqrt{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?\sqrt{x}" title="\sqrt{x}" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\sqrt[{}]{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?\sqrt[3]{x}" title="\sqrt[3]{x}" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\sqrt[n]{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?\sqrt[n]{x}" title="\sqrt[n]{x}" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\infty ')">
+        <img src="https://latex.codecogs.com/svg.latex?\infty" title="\infty" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('-\\infty ')">
+        <img src="https://latex.codecogs.com/svg.latex?-\infty" title="-\infty" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\pi ')">
+        <img src="https://latex.codecogs.com/svg.latex?\pi" title="\pi" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('e ')">
+        <img src="https://latex.codecogs.com/svg.latex?e" title="e" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('e^{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?e^x" title="e^x" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\ln() ')">
+        <img src="https://latex.codecogs.com/svg.latex?\ln(x)" title="\ln(x)" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\log_{} ')">
+        <img src="https://latex.codecogs.com/svg.latex?\log_{2}(x)" title="\log_{2}(x)" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('\\log_{10}() ')">
+        <img src="https://latex.codecogs.com/svg.latex?\log_{10}(x)" title="\log_{10}(x)" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('|{}| ')">
+        <img src="https://latex.codecogs.com/svg.latex?|x|" title="|x|" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('{} \\le {} ')">
+        <img src="https://latex.codecogs.com/svg.latex?x \le y" title="x \le y" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('{} \\ge {} ')">
+        <img src="https://latex.codecogs.com/svg.latex?x \ge y" title="x \ge y" height="24">
+    </button>
+    <button class="op-button" onclick="insertOperator('{} \\ne {} ')">
+        <img src="https://latex.codecogs.com/svg.latex?x \ne y" title="x \ne y" height="24">
+    </button>
+
+</div>
+
 {% if user_message %}
-        <p>あなた: {{ user_message }}</p>
-        <!--<p>Bot: {{ bot_reply }}</p>-->
-        <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
+<p>あなた: {{ user_message }}</p>
+<p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
 {% endif %}
+
+<script>
+    function insertOperator(operator) {
+        const inputField = document.getElementById('user_message');
+        const start = inputField.selectionStart;
+        const end = inputField.selectionEnd;
+        const value = inputField.value;
+        inputField.value = value.substring(0, start) + operator + value.substring(end);
+        inputField.selectionStart = inputField.selectionEnd = start + operator.length;
+        inputField.focus();
+    }
+</script>
 
 {% endblock %}
