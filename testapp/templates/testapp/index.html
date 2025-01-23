@@ -8,170 +8,8 @@
     <button type="submit">送信</button>
 </form>
 
-<div class="button-container" style="margin-top: 10px;">
-    <!--分数や根号-->
-    <button class="op-button" onclick="insertOperator('\\frac{}{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{x}{y}" title="\frac{x}{y}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('^{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?x^2" title="x^2" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('_{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?x_n" title="x_n" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\sqrt{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\sqrt{x}" title="\sqrt{x}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\sqrt[{}]{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\sqrt[3]{x}" title="\sqrt[3]{x}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\sqrt[n]{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\sqrt[n]{x}" title="\sqrt[n]{x}" height="24">
-    </button>
-
-    <!--無限大は扱いが難しいのでコメントアウト
-    <button class="op-button" onclick="insertOperator('\\infty ')">
-        <img src="https://latex.codecogs.com/svg.latex?\infty" title="\infty" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('-\\infty ')">
-        <img src="https://latex.codecogs.com/svg.latex?-\infty" title="-\infty" height="24">
-    </button>
-    -->
-
-    <!--重要な定数-->
-    <button class="op-button" onclick="insertOperator('\\pi ')">
-        <img src="https://latex.codecogs.com/svg.latex?\pi" title="\pi" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('e ')">
-        <img src="https://latex.codecogs.com/svg.latex?e" title="e" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('e^{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?e^x" title="e^x" height="24">
-    </button>
-
-    <!--対数関数と絶対値記号-->
-    <button class="op-button" onclick="insertOperator('\\ln() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\ln(x)" title="\ln(x)" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\log_{} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\log_{2}(x)" title="\log_{2}(x)" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\log_{10}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\log_{10}(x)" title="\log_{10}(x)" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('|{}| ')">
-        <img src="https://latex.codecogs.com/svg.latex?|x|" title="|x|" height="24">
-    </button>
-
-    <!--不等号演算子は扱いが難しいのでコメントアウト
-    <button class="op-button" onclick="insertOperator('{} \\le {} ')">
-        <img src="https://latex.codecogs.com/svg.latex?x \le y" title="x \le y" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('{} \\ge {} ')">
-        <img src="https://latex.codecogs.com/svg.latex?x \ge y" title="x \ge y" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('{} \\ne {} ')">
-        <img src="https://latex.codecogs.com/svg.latex?x \ne y" title="x \ne y" height="24">
-    </button>
-    -->
-
-    <!--微分、偏微分-->
-    <button class="op-button" onclick="insertOperator('\\frac{d}{d{}}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{d}{dx}()" title="\frac{d}{dx}()" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\frac{d^2}{d{}^2}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{d^2}{dx^2}()" title="\frac{d^2}{dx^2}()" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\frac{\\partial}{\\partial{}}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{\partial}{\partial x}" title="\frac{\partial}{\partial x}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\frac{\\partial^2}{\\partial{}^2}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{\partial^2}{\partial x^2}" title="\frac{\partial^2}{\partial x^2}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\frac{\\partial^2}{\\partial{}\\partial{}}() ')">
-        <img src="https://latex.codecogs.com/svg.latex?\frac{\partial^2}{\partial x \partial y}" title="\frac{\partial^2}{\partial x \partial y}" height="24">
-    </button>
-
-    <!--積分-->
-    <button class="op-button" onclick="insertOperator('\\int () d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\int" title="\int () d" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\iint () d d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\iint" title="\iint ()  d d" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\iiint () d d d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\iiint" title="\iiint () d d d" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\int_{}^{} () d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\int_{a}^{b}" title="\int_{a}^{b} d" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\int_{}^{} \\int_{}^{} () d d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\int_{a}^{b}\int_{a}^{b}" title="\int_{a}^{b}\int_{a}^{b} d d " height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\int_{}^{} \\int_{}^{} \\int_{}^{} () d d d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\int_{a}^{b}\int_{a}^{b}\int_{a}^{b}" title="\int_{a}^{b}d d d " height="24">
-    </button>
-
-    <!--周回積分は扱いが難しいのでコメントアウト
-    <button class="op-button" onclick="insertOperator('\\oint ')">
-        <img src="https://latex.codecogs.com/svg.latex?\oint" title="\oint" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\oiint ')">
-        <img src="https://latex.codecogs.com/svg.latex?\oiint" title="\oiint" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\oiiint ')">
-        <img src="https://latex.codecogs.com/svg.latex?\oiiint" title="\oiiint" height="24">
-    </button>
-    -->
-
-    <!--総和、総乗-->
-    <button class="op-button" onclick="insertOperator('\\sum_{}^{} () ')">
-        <img src="https://latex.codecogs.com/svg.latex?\sum_{\square}^{\square}\square" title="\sum_{k=1}^{n}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\prod_{}^{} () ')">
-        <img src="https://latex.codecogs.com/svg.latex?\prod_{\square}^{\square}\square" title="\prod_{k=1}^{n}" height="24">
-    </button>
-
-    <!--極限やデルタ関数、二項係数、ケース分け、ラプラス変換、フーリエ変換は難しいのでコメントアウト
-    <button class="op-button" onclick="insertOperator('\\lim_{\\square \\to \\square} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\lim_{x \to a}" title="\lim_{x \to a}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\lim_{\\square \\to \\square^-} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\lim_{x \to a^-}" title="\lim_{x \to a^-}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\lim_{\\square \\to \\square^+} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\lim_{x \to a^+}" title="\lim_{x \to a^+}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\lim_{\\square \\to \\infty} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\lim_{x \to \infty}" title="\lim_{x \to \infty}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\theta (\\square) ')">
-        <img src="https://latex.codecogs.com/svg.latex?\theta(x)" title="\theta(x)" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\delta (\\square) ')">
-        <img src="https://latex.codecogs.com/svg.latex?\delta(x)" title="\delta(x)" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\binom{\\square}{\\square} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\binom{n}{k}" title="\binom{n}{k}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\begin{cases} \\square \\\\ \\square \\end{cases} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\begin{cases} a \\\\ b \end{cases}" title="\begin{cases} a \\\\ b \end{cases}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\mathcal{L}_{\\square} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{s}" title="\mathcal{L}_{s}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\mathcal{L}_{\\square}^{-1} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\mathcal{L}_{s}^{-1}" title="\mathcal{L}_{s}^{-1}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\mathcal{F}_{\\square} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\mathcal{F}_{\omega}" title="\mathcal{F}_{\omega}" height="24">
-    </button>
-    <button class="op-button" onclick="insertOperator('\\mathcal{F}_{\\square}^{-1} ')">
-        <img src="https://latex.codecogs.com/svg.latex?\mathcal{F}_{\omega}^{-1}" title="\mathcal{F}_{\omega}^{-1}" height="24">
-    </button>
-    -->
-
-    
+<div id="button-container" style="margin-top: 10px;">
+    <!-- ボタンはJavaScriptでここに挿入される -->
 </div>
 
 {% if user_message %}
@@ -179,7 +17,67 @@
 <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
 {% endif %}
 
+<!--これまでのbuttonタグ 
+    <button class="op-button" onclick="insertOperator('\\int () d ')">
+        <img src="https://latex.codecogs.com/svg.latex?\int" title="\int () d" height="24">
+    </button>
+-->
+
 <script>
+    // ボタンのデータを配列で定義
+    const buttonsData = [
+        { latex: '\\frac{}{}', image: '\\frac{\\square}{\\square}', title: '分数' },
+        { latex: '{}^{n}', image: '\\square^n', title: '上付き文字' },
+        { latex: '{}_{n}', image: '\\square_n', title: '下付き文字' },
+        { latex: '\\sqrt{}', image: '\\sqrt{\\square}', title: '平方根' },
+        { latex: '\\sqrt[n]{}', image: '\\sqrt[n]{\\square}', title: 'n乗根' },
+        { latex: '\\pi', image: '\\pi', title: '円周率' },
+        { latex: 'e', image: 'e', title: 'ネイピア数' },
+        { latex: 'e^{}', image: 'e^\\square', title: 'eのべき乗' },
+        { latex: '\\ln()', image: '\\ln(\\square)', title: '自然対数' },
+        { latex: '\\log_{n}()', image: '\\log_{n}(\\square)', title: '底を指定した対数' },
+        { latex: '\\log_{10}()', image: '\\log_{10}(\\square)', title: '常用対数' },
+        { latex: '|{}|', image: '|\\square|', title: '絶対値' },
+        { latex: '\\frac{d}{d{}}() ', image: '\\frac{d}{d\\square}(\\square)', title: '微分' },
+        { latex: '\\frac{d^2}{d{}^2}() ', image: '\\frac{d^2}{d\\square^2}(\\square)', title: '2階微分' },
+        { latex: '\\frac{\\partial}{\\partial{}}() ', image: '\\frac{\\partial}{\\partial \\square}(\\square)', title: '偏微分' },
+        { latex: '\\frac{\\partial^2}{\\partial{}^2}() ', image: '\\frac{\\partial^2}{\\partial \\square^2}(\\square)', title: '2階偏微分' },
+        { latex: '\\frac{\\partial^2}{\\partial{}\\partial{}}() ', image: '\\frac{\\partial^2}{\\partial \\square \\partial \\square}(\\square)', title: '2変数2階偏微分' },
+        { latex: '\\int () d ', image: '\\int \\square d\\square', title: '積分' },
+        { latex: '\\iint () d d ', image: '\\iint \\square d\\square d\\square', title: '重積分' },
+        { latex: '\\iiint () d d d ', image: '\\iiint \\square d\\square d\\square d\\square', title: '3重積分' },
+        { latex: '\\int_{}^{} d ', image: '\\int_{\\square}^{\\square}\\square d\\square ', title: '定積分' },
+        { latex: '\\int_{}^{} \\int_{}^{} () d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square', title: '重定積分' },
+        { latex: '\\int_{}^{} \\int_{}^{} \\int_{}^{} () d d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square d\\square', title: '3重定積分' },
+        { latex: '\\sum_{}^{}() ', image: '\\sum_{\\square}^{\\square}\\square', title: '総和' },
+        { latex: '\\prod_{}^{}() ', image: '\\prod_{\\square}^{\\square}\\square', title: '総乗' },
+    ];
+
+    // ボタンを生成して挿入する関数
+    function createButtons(buttonsData) {
+        const buttonContainer = document.getElementById('button-container');
+
+        buttonsData.forEach(button => {
+            const buttonElement = document.createElement('button');
+            buttonElement.className = 'op-button';
+            buttonElement.onclick = () => insertOperator(button.latex + ' '); // 末尾にスペースを追加
+
+            const imgElement = document.createElement('img');
+            imgElement.src = `https://latex.codecogs.com/svg.latex?${button.image}`;
+            imgElement.title = `${button.title} (${button.latex})`;
+            imgElement.height = 24;
+
+            buttonElement.appendChild(imgElement);
+            buttonContainer.appendChild(buttonElement);
+        });
+    }
+
+    // ページ読み込み時にボタンを生成
+    window.onload = () => {
+        createButtons(buttonsData);
+    };
+
+    // 演算子を挿入する関数（以前と同じ）
     function insertOperator(operator) {
         const inputField = document.getElementById('user_message');
         const start = inputField.selectionStart;
@@ -189,7 +87,6 @@
         inputField.selectionStart = inputField.selectionEnd = start + operator.length;
         inputField.focus();
     }
-    
 </script>
 
 {% endblock %}
