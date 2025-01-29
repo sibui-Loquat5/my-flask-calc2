@@ -6,28 +6,119 @@
     <!-- MathJaxの読み込み -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .input-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #2196F3;
+            outline: none;
+        }
+
+        .submit-button {
+            background: #2196F3;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #1976D2;
+        }
+
+        .preview-area {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f5f5f5;
+            min-height: 100px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .op-button {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .op-button:hover {
+            background: #f5f5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .message-history {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 
 <body>
-    <h1>数式入力フォーム</h1>
-    <form method="POST">
-        <input type="text" name="user_message" id="user_message" style="width: 80%;" placeholder="ここにLaTeX形式で数式を入力">
-        <button type="submit">送信</button>
-    </form>
+    <div class="container">
+        <h1>関数電卓</h1>
+        
+        <div class="input-form">
+            <form method="POST">
+                <input type="text" 
+                       name="user_message" 
+                       id="user_message" 
+                       class="input-field"
+                       placeholder="ここにLaTeX形式で数式を入力">
+                <button type="submit" class="submit-button">送信</button>
+            </form>
+        </div>
 
-    <!-- LaTeXプレビュー表示エリア -->
-    <h2>入力した数式</h2>
-    <div id="preview" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; min-height: 50px;">
+        <h2>数式プレビュー</h2>
+        <div id="preview" class="preview-area"></div>
+
+        <div id="button-container" class="button-grid">
+            <!-- ボタンはJavaScriptで挿入 -->
+        </div>
+
+        {% if user_message %}
+        <div class="message-history">
+            <p>あなた: {{ user_message }}</p>
+            <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
+        </div>
+        {% endif %}
     </div>
-
-    <div id="button-container" style="margin-top: 10px;">
-        <!-- ボタンはJavaScriptでここに挿入される -->
-    </div>
-
-    {% if user_message %}
-    <p>あなた: {{ user_message }}</p>
-    <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
-    {% endif %}
 
     <script>
         // ボタンのデータを配列で定義
