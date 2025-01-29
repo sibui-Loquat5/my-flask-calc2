@@ -15,6 +15,11 @@
         <button type="submit">送信</button>
     </form>
 
+    <!-- LaTeXプレビュー表示エリア -->
+    <h2>入力した数式</h2>
+    <div id="preview" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; min-height: 50px;">
+    </div>
+
     <div id="button-container" style="margin-top: 10px;">
         <!-- ボタンはJavaScriptでここに挿入される -->
     </div>
@@ -23,11 +28,6 @@
     <p>あなた: {{ user_message }}</p>
     <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
     {% endif %}
-
-    <h2>入力した数式</h2>
-    <!-- LaTeXプレビュー表示エリア -->
-    <div id="preview" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; min-height: 50px;">
-    </div>
 
     <script>
         // ボタンのデータを配列で定義

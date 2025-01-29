@@ -21,10 +21,22 @@ def index():
             model="gpt-4o-mini",
             messages=[
                 # ChatGPTの動作を指示
-                {"role": "system", "content": "あなたは親切で役に立つアシスタントです。"},
+                {
+                    "role": "system",
+                    "content": 
+                        "数式解説のフォーマット：\n"
+                        "1. 解く数式をLaTeXで表示\n"
+                        "2. 使用する定理/公式を明示\n"
+                        "3. 計算過程をステップバイステップで導出\n"
+                        "追加の指示:\n"
+                        "- 変数置換がある場合は『◯◯と置く』と宣言\n"
+                        "- 各ステップの数式は独立した行に表示\n"
+                        "- 自然言語の説明は最小限に抑える"
+                },
                 # ユーザーのメッセージをChatGPTに送信
                 {"role": "user", "content": user_message},
             ],
+            temperature=0.2,
         )
         # APIからのレスポンスからChatGPTの応答テキストを抽出
         # 改行を<br>に置換
