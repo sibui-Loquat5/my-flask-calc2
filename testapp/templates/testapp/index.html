@@ -2,91 +2,105 @@
 
 {% block content %}
 
-<h1>フォーム</h1>
-<form method="POST">
-    <input type="text" name="user_message" id="user_message" style="width: 80%;" placeholder="ここにLaTeX形式で数式を入力">
-    <button type="submit">送信</button>
-</form>
+<head>
+    <!-- MathJaxの読み込み -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
 
-<div id="button-container" style="margin-top: 10px;">
-    <!-- ボタンはJavaScriptでここに挿入される -->
-</div>
+<body>
+    <h1>数式入力フォーム</h1>
+    <form method="POST">
+        <input type="text" name="user_message" id="user_message" style="width: 80%;" placeholder="ここにLaTeX形式で数式を入力">
+        <button type="submit">送信</button>
+    </form>
 
-{% if user_message %}
-<p>あなた: {{ user_message }}</p>
-<p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
-{% endif %}
+    <div id="button-container" style="margin-top: 10px;">
+        <!-- ボタンはJavaScriptでここに挿入される -->
+    </div>
 
-<!--これまでのbuttonタグ 
-    <button class="op-button" onclick="insertOperator('\\int () d ')">
-        <img src="https://latex.codecogs.com/svg.latex?\int" title="\int () d" height="24">
-    </button>
--->
+    {% if user_message %}
+    <p>あなた: {{ user_message }}</p>
+    <p style="white-space: pre-wrap;">Bot: {{ bot_reply }}</p>
+    {% endif %}
 
-<script>
-    // ボタンのデータを配列で定義
-    const buttonsData = [
-        { latex: '\\frac{}{}', image: '\\frac{\\square}{\\square}', title: '分数' },
-        { latex: '{}^{n}', image: '\\square^n', title: '上付き文字' },
-        { latex: '{}_{n}', image: '\\square_n', title: '下付き文字' },
-        { latex: '\\sqrt{}', image: '\\sqrt{\\square}', title: '平方根' },
-        { latex: '\\sqrt[n]{}', image: '\\sqrt[n]{\\square}', title: 'n乗根' },
-        { latex: '\\pi', image: '\\pi', title: '円周率' },
-        { latex: 'e', image: 'e', title: 'ネイピア数' },
-        { latex: 'e^{}', image: 'e^\\square', title: 'eのべき乗' },
-        { latex: '\\ln()', image: '\\ln(\\square)', title: '自然対数' },
-        { latex: '\\log_{n}()', image: '\\log_{n}(\\square)', title: '底を指定した対数' },
-        { latex: '\\log_{10}()', image: '\\log_{10}(\\square)', title: '常用対数' },
-        { latex: '|{}|', image: '|\\square|', title: '絶対値' },
-        { latex: '\\frac{d}{d{}}() ', image: '\\frac{d}{d\\square}(\\square)', title: '微分' },
-        { latex: '\\frac{d^2}{d{}^2}() ', image: '\\frac{d^2}{d\\square^2}(\\square)', title: '2階微分' },
-        { latex: '\\frac{\\partial}{\\partial{}}() ', image: '\\frac{\\partial}{\\partial \\square}(\\square)', title: '偏微分' },
-        { latex: '\\frac{\\partial^2}{\\partial{}^2}() ', image: '\\frac{\\partial^2}{\\partial \\square^2}(\\square)', title: '2階偏微分' },
-        { latex: '\\frac{\\partial^2}{\\partial{}\\partial{}}() ', image: '\\frac{\\partial^2}{\\partial \\square \\partial \\square}(\\square)', title: '2変数2階偏微分' },
-        { latex: '\\int () d ', image: '\\int \\square d\\square', title: '積分' },
-        { latex: '\\iint () d d ', image: '\\iint \\square d\\square d\\square', title: '重積分' },
-        { latex: '\\iiint () d d d ', image: '\\iiint \\square d\\square d\\square d\\square', title: '3重積分' },
-        { latex: '\\int_{}^{} d ', image: '\\int_{\\square}^{\\square}\\square d\\square ', title: '定積分' },
-        { latex: '\\int_{}^{} \\int_{}^{} () d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square', title: '重定積分' },
-        { latex: '\\int_{}^{} \\int_{}^{} \\int_{}^{} () d d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square d\\square', title: '3重定積分' },
-        { latex: '\\sum_{}^{}() ', image: '\\sum_{\\square}^{\\square}\\square', title: '総和' },
-        { latex: '\\prod_{}^{}() ', image: '\\prod_{\\square}^{\\square}\\square', title: '総乗' },
-    ];
+    <h2>入力した数式</h2>
+    <!-- LaTeXプレビュー表示エリア -->
+    <div id="preview" style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; min-height: 50px;">
+    </div>
 
-    // ボタンを生成して挿入する関数
-    function createButtons(buttonsData) {
-        const buttonContainer = document.getElementById('button-container');
+    <script>
+        // ボタンのデータを配列で定義
+        const buttonsData = [
+            { latex: '\\frac{}{}', image: '\\frac{\\square}{\\square}', title: '分数' },
+            { latex: '{}^{n}', image: '\\square^n', title: '上付き文字' },
+            { latex: '{}_{n}', image: '\\square_n', title: '下付き文字' },
+            { latex: '\\sqrt{}', image: '\\sqrt{\\square}', title: '平方根' },
+            { latex: '\\sqrt[n]{}', image: '\\sqrt[n]{\\square}', title: 'n乗根' },
+            { latex: '\\pi', image: '\\pi', title: '円周率' },
+            { latex: 'e', image: 'e', title: 'ネイピア数' },
+            { latex: 'e^{}', image: 'e^\\square', title: 'eのべき乗' },
+            { latex: '\\ln()', image: '\\ln(\\square)', title: '自然対数' },
+            { latex: '\\log_{n}()', image: '\\log_{n}(\\square)', title: '底を指定した対数' },
+            { latex: '\\log_{10}()', image: '\\log_{10}(\\square)', title: '常用対数' },
+            { latex: '|{}|', image: '|\\square|', title: '絶対値' },
+            { latex: '\\frac{d}{d{}}() ', image: '\\frac{d}{d\\square}(\\square)', title: '微分' },
+            { latex: '\\frac{d^2}{d{}^2}() ', image: '\\frac{d^2}{d\\square^2}(\\square)', title: '2階微分' },
+            { latex: '\\frac{\\partial}{\\partial{}}() ', image: '\\frac{\\partial}{\\partial \\square}(\\square)', title: '偏微分' },
+            { latex: '\\frac{\\partial^2}{\\partial{}^2}() ', image: '\\frac{\\partial^2}{\\partial \\square^2}(\\square)', title: '2階偏微分' },
+            { latex: '\\frac{\\partial^2}{\\partial{}\\partial{}}() ', image: '\\frac{\\partial^2}{\\partial \\square \\partial \\square}(\\square)', title: '2変数2階偏微分' },
+            { latex: '\\int () d ', image: '\\int \\square d\\square', title: '積分' },
+            { latex: '\\iint () d d ', image: '\\iint \\square d\\square d\\square', title: '重積分' },
+            { latex: '\\iiint () d d d ', image: '\\iiint \\square d\\square d\\square d\\square', title: '3重積分' },
+            { latex: '\\int_{}^{} d ', image: '\\int_{\\square}^{\\square}\\square d\\square ', title: '定積分' },
+            { latex: '\\int_{}^{} \\int_{}^{} () d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square', title: '重定積分' },
+            { latex: '\\int_{}^{} \\int_{}^{} \\int_{}^{} () d d d ', image: '\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\int_{\\square}^{\\square}\\square d\\square d\\square d\\square', title: '3重定積分' },
+            { latex: '\\sum_{}^{}() ', image: '\\sum_{\\square}^{\\square}\\square', title: '総和' },
+            { latex: '\\prod_{}^{}() ', image: '\\prod_{\\square}^{\\square}\\square', title: '総乗' },
+        ];
 
-        buttonsData.forEach(button => {
-            const buttonElement = document.createElement('button');
-            buttonElement.className = 'op-button';
-            buttonElement.onclick = () => insertOperator(button.latex + ' '); // 末尾にスペースを追加
+        // ボタンを生成して挿入する関数
+        function createButtons(buttonsData) {
+            const buttonContainer = document.getElementById('button-container');
 
-            const imgElement = document.createElement('img');
-            imgElement.src = `https://latex.codecogs.com/svg.latex?${button.image}`;
-            imgElement.title = `${button.title} (${button.latex})`;
-            imgElement.height = 24;
+            buttonsData.forEach(button => {
+                const buttonElement = document.createElement('button');
+                buttonElement.className = 'op-button';
+                buttonElement.onclick = () => insertOperator(button.latex + ' '); // 末尾にスペースを追加
 
-            buttonElement.appendChild(imgElement);
-            buttonContainer.appendChild(buttonElement);
+                const imgElement = document.createElement('img');
+                imgElement.src = `https://latex.codecogs.com/svg.latex?${button.image}`;
+                imgElement.title = `${button.title} (${button.latex})`;
+                imgElement.height = 24;
+
+                buttonElement.appendChild(imgElement);
+                buttonContainer.appendChild(buttonElement);
+            });
+        }
+
+        // ページ読み込み時にボタンを生成
+        window.onload = () => {
+            createButtons(buttonsData);
+        };
+
+        // 演算子を挿入する関数（以前と同じ）
+        function insertOperator(operator) {
+            const inputField = document.getElementById('user_message');
+            const start = inputField.selectionStart;
+            const end = inputField.selectionEnd;
+            const value = inputField.value;
+            inputField.value = value.substring(0, start) + operator + value.substring(end);
+            inputField.selectionStart = inputField.selectionEnd = start + operator.length;
+            inputField.focus();
+        }
+
+        document.getElementById('user_message').addEventListener('input', function() {
+            const input = this.value;
+            const preview = document.getElementById('preview');
+            preview.innerHTML = '$$' + input + '$$';
+            MathJax.typesetPromise([preview]).catch((err) => console.log(err));
         });
-    }
-
-    // ページ読み込み時にボタンを生成
-    window.onload = () => {
-        createButtons(buttonsData);
-    };
-
-    // 演算子を挿入する関数（以前と同じ）
-    function insertOperator(operator) {
-        const inputField = document.getElementById('user_message');
-        const start = inputField.selectionStart;
-        const end = inputField.selectionEnd;
-        const value = inputField.value;
-        inputField.value = value.substring(0, start) + operator + value.substring(end);
-        inputField.selectionStart = inputField.selectionEnd = start + operator.length;
-        inputField.focus();
-    }
-</script>
+    </script>
+</body>
 
 {% endblock %}
