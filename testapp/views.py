@@ -41,7 +41,7 @@ def index():
         # APIからのレスポンスからChatGPTの応答テキストを抽出
         # 改行を<br>に置換
         bot_reply = response.choices[0].message.content
-        print(bot_reply)
+        # print(bot_reply)
         # print(type(bot_reply))
 
         # render_template()でindex.htmlをレンダリングしたうえでユーザーの入力とChatGPTの応答をHTMLに渡す
